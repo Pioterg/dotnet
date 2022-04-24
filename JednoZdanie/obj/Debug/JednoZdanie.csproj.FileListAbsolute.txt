@@ -1,0 +1,6 @@
+D:\Kurs Programowania C#\JednoZdanie\bin\Debug\JednoZdanie.exe.config
+D:\Kurs Programowania C#\JednoZdanie\bin\Debug\JednoZdanie.exe
+D:\Kurs Programowania C#\JednoZdanie\bin\Debug\JednoZdanie.pdb
+D:\Kurs Programowania C#\JednoZdanie\obj\Debug\JednoZdanie.csprojAssemblyReference.cache
+D:\Kurs Programowania C#\JednoZdanie\obj\Debug\JednoZdanie.exe
+D:\Kurs Programowania C#\JednoZdanie\obj\Debug\JednoZdanie.pdb

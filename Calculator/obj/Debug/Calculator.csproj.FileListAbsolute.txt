@@ -1,0 +1,6 @@
+D:\Kurs Programowania C#\Calculator\bin\Debug\Calculator.exe.config
+D:\Kurs Programowania C#\Calculator\bin\Debug\Calculator.exe
+D:\Kurs Programowania C#\Calculator\bin\Debug\Calculator.pdb
+D:\Kurs Programowania C#\Calculator\obj\Debug\Calculator.csprojAssemblyReference.cache
+D:\Kurs Programowania C#\Calculator\obj\Debug\Calculator.exe
+D:\Kurs Programowania C#\Calculator\obj\Debug\Calculator.pdb

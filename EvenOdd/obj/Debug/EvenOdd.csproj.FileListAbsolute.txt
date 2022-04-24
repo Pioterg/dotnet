@@ -1,0 +1,6 @@
+D:\C#\EvenOdd\bin\Debug\EvenOdd.exe.config
+D:\C#\EvenOdd\bin\Debug\EvenOdd.exe
+D:\C#\EvenOdd\bin\Debug\EvenOdd.pdb
+D:\C#\EvenOdd\obj\Debug\EvenOdd.csprojAssemblyReference.cache
+D:\C#\EvenOdd\obj\Debug\EvenOdd.exe
+D:\C#\EvenOdd\obj\Debug\EvenOdd.pdb
