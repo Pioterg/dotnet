@@ -1,6 +1,0 @@
-D:\C#\FizzBuzz\obj\Debug\FizzBuzz.csprojAssemblyReference.cache
-D:\C#\FizzBuzz\bin\Debug\FizzBuzz.exe.config
-D:\C#\FizzBuzz\bin\Debug\FizzBuzz.exe
-D:\C#\FizzBuzz\bin\Debug\FizzBuzz.pdb
-D:\C#\FizzBuzz\obj\Debug\FizzBuzz.exe
-D:\C#\FizzBuzz\obj\Debug\FizzBuzz.pdb
