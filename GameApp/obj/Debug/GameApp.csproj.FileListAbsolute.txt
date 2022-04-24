@@ -1,6 +1,0 @@
-D:\Kurs Programowania C#\GameApp\bin\Debug\GameApp.exe.config
-D:\Kurs Programowania C#\GameApp\bin\Debug\GameApp.exe
-D:\Kurs Programowania C#\GameApp\bin\Debug\GameApp.pdb
-D:\Kurs Programowania C#\GameApp\obj\Debug\GameApp.csprojAssemblyReference.cache
-D:\Kurs Programowania C#\GameApp\obj\Debug\GameApp.exe
-D:\Kurs Programowania C#\GameApp\obj\Debug\GameApp.pdb
