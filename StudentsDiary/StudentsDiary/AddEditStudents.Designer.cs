@@ -82,7 +82,6 @@
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(173, 20);
             this.tbFirstName.TabIndex = 2;
-            this.tbFirstName.TextChanged += new System.EventHandler(this.tbFirstName_TextChanged);
             // 
             // lbLastName
             // 

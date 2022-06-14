@@ -15,9 +15,33 @@ namespace StudentsDiary
     public partial class AddEditStudents : Form
     {
         private string _filePath = Path.Combine(Environment.CurrentDirectory, "students.txt");
-        public AddEditStudents()
+        private int _studentId;
+        public AddEditStudents(int id = 0)
         {
             InitializeComponent();
+            _studentId = id;
+
+            if (id != 0)
+            {
+                var students = DeserializeFromFile();
+                var student = students.FirstOrDefault(x => x.Id == id);
+
+                if (student == null)
+                {
+                    throw new Exception("Brak użytkownika o podanym Id.");
+                }
+                tbId.Text = student.Id.ToString();
+                tbFirstName.Text = student.FirstName.ToString();
+                tbLastName.Text = student.LastName.ToString();
+                tbMath.Text = student.Math.ToString();
+                tbPhysic.Text = student.Physics.ToString();
+                tbTechnology.Text = student.Technology.ToString();
+                tbPolishLang.Text = student.PolishLang.ToString();
+                tbForeignLang.Text = student.ForeignLang.ToString();
+                rtbComments.Text = student.Comments.ToString();
+            }
+
+            tbFirstName.Select();
         }
 
         public void SerializeToFile(List<Student> students)
@@ -49,13 +73,20 @@ namespace StudentsDiary
         {
             var students = DeserializeFromFile();
 
-            var studentsWithtHighestId = students.OrderByDescending(x => x.Id).FirstOrDefault();
-            
-            var studentId = studentsWithtHighestId == null ? 1 : studentsWithtHighestId.Id + 1;
+            if (_studentId != 0)
+            {
+                students.RemoveAll(x => x.Id == _studentId);
+            }
+            else
+            {
+                var studentsWithtHighestId = students.OrderByDescending(x => x.Id).FirstOrDefault();
+
+               _studentId = studentsWithtHighestId == null ? 1 : studentsWithtHighestId.Id + 1;
+            }
 
             var student = new Student
             {
-                Id = studentId,
+                Id = _studentId,
                 FirstName = tbFirstName.Text,
                 LastName = tbLastName.Text,
                 Comments = rtbComments.Text,
@@ -74,12 +105,8 @@ namespace StudentsDiary
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
-        private void tbFirstName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
