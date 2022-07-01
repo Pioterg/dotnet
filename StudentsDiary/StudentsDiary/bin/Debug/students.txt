@@ -11,4 +11,15 @@
     <PolishLang />
     <ForeignLang />
   </Student>
+  <Student>
+    <Id>2</Id>
+    <FirstName>Marek</FirstName>
+    <LastName>Kowalski</LastName>
+    <Comments>test</Comments>
+    <Math>4</Math>
+    <Technology>3</Technology>
+    <Physics>5</Physics>
+    <PolishLang>2</PolishLang>
+    <ForeignLang>6</ForeignLang>
+  </Student>
 </ArrayOfStudent>

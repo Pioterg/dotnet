@@ -15,39 +15,37 @@ namespace StudentsDiary
     public partial class Main : Form
     {
         //private string _filePath = $@"{Environment.CurrentDirectory}\students.txt";
-        private string _filePath = Path.Combine(Environment.CurrentDirectory, "students.txt");
+        //private string _filePath = Path.Combine(Environment.CurrentDirectory, "students.txt");
 
+
+        private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.FilePath);
         public Main()
         {
             InitializeComponent();
-            var students = DeserializeFromFile();
+            RefreshDiary();
+            SetColumnsHeader();
+
+
+        }
+        private void RefreshDiary()
+        {
+            var students = _fileHelper.DeserializeFromFile();
             dgvDiary.DataSource = students;
-
         }
-        public void SerializeToFile(List<Student> students)
+
+        private void SetColumnsHeader()
         {
-            var serializer = new XmlSerializer(typeof(List<Student>));
-
-            using (var streamWriter = new StreamWriter(_filePath))
-            {
-                serializer.Serialize(streamWriter, students);
-                streamWriter.Close();
-            }
+            dgvDiary.Columns[0].HeaderText = "Numer";
+            dgvDiary.Columns[1].HeaderText = "Imię";
+            dgvDiary.Columns[2].HeaderText = "Nazwisko";
+            dgvDiary.Columns[3].HeaderText = "Uwagi";
+            dgvDiary.Columns[4].HeaderText = "Matematyka";
+            dgvDiary.Columns[5].HeaderText = "Technologia";
+            dgvDiary.Columns[6].HeaderText = "Fizyka";
+            dgvDiary.Columns[7].HeaderText = "Język Polski";
+            dgvDiary.Columns[8].HeaderText = "Język Obcy";
         }
-        public List<Student> DeserializeFromFile()
-        {
-            if (!File.Exists(_filePath))
-                return new List<Student>();
-            
-            var serializer = new XmlSerializer(typeof(List<Student>));
 
-            using (var streamReader = new StreamReader(_filePath))
-            {
-                var students = (List<Student>)serializer.Deserialize(streamReader);
-                streamReader.Close();
-                return students;
-            }
-        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var addEditStudent = new AddEditStudents();
@@ -80,17 +78,21 @@ namespace StudentsDiary
 
             if (confirmDelete == DialogResult.OK)
             {
-                var students = DeserializeFromFile();
-                students.RemoveAll(x => x.Id == Convert.ToInt32(selectedStudent.Cells[0].Value));
-                SerializeToFile(students);
-                dgvDiary.DataSource = students;
+                DeleteStudent(Convert.ToInt32(selectedStudent.Cells[0].Value));
+                RefreshDiary();
             }
+        }
+
+        private void DeleteStudent(int id)
+        {
+            var students = _fileHelper.DeserializeFromFile();
+            students.RemoveAll(x => x.Id == id);
+            _fileHelper.SerializeToFile(students);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            var students = DeserializeFromFile();
-            dgvDiary.DataSource = students;
+            RefreshDiary();
         }
     }
 }
