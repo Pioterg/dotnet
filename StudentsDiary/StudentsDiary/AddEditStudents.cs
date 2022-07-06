@@ -2,25 +2,34 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StudentsDiary
 {
     public partial class AddEditStudents : Form
     {
-        //private string _filePath = Path.Combine(Environment.CurrentDirectory, "students.txt");
-
         private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.FilePath);
-
         private int _studentId;
         private Student _student;
+        private List<Group> _groups;
 
         public AddEditStudents(int id = 0)
         {
             InitializeComponent();
             _studentId = id;
+            _groups = GroupsHelper.GetGroups("Brak");
+            InitGroupComboBox();
             GetStudentData();
             tbFirstName.Select();
+        }
+
+        private void InitGroupComboBox()
+        {
+           cmbGroup.DataSource = _groups;
+           cmbGroup.DisplayMember = "Name";
+           cmbGroup.ValueMember = "Id";
         }
 
         private void GetStudentData()
@@ -51,9 +60,11 @@ namespace StudentsDiary
             tbPolishLang.Text = _student.PolishLang.ToString();
             tbForeignLang.Text = _student.ForeignLang.ToString();
             rtbComments.Text = _student.Comments.ToString();
+            cbAdditionalActivities.Checked = _student.AdditionalActivities;
+            cmbGroup.SelectedItem = _groups.FirstOrDefault(x => x.Id == _student.GroupId);
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private async void btnConfirm_Click(object sender, EventArgs e)
         {
             var students = _fileHelper.DeserializeFromFile();
 
@@ -67,7 +78,6 @@ namespace StudentsDiary
             _fileHelper.SerializeToFile(students);
             Close();
         }
-
         private void AddNewUserToList(List<Student> students)
         {
             var student = new Student
@@ -80,7 +90,9 @@ namespace StudentsDiary
                 Physics = tbPhysic.Text,
                 PolishLang = tbPolishLang.Text,
                 ForeignLang = tbForeignLang.Text,
-                Technology = tbTechnology.Text
+                Technology = tbTechnology.Text,
+                AdditionalActivities = cbAdditionalActivities.Checked,
+                GroupId = (cmbGroup.SelectedItem as Group).Id
             };
 
             students.Add(student);
@@ -97,6 +109,5 @@ namespace StudentsDiary
         {
             Close();
         }
-
     }
 }

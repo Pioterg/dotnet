@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student>
+    <Id>1</Id>
+    <FirstName>imie</FirstName>
+    <LastName>nazwisko</LastName>
+    <Comments>uwagi</Comments>
+    <Math>matematyka</Math>
+    <Technology>technologia</Technology>
+    <Physics>fizyka</Physics>
+    <PolishLang>polski</PolishLang>
+    <ForeignLang>obcy</ForeignLang>
+    <AdditionalActivities>true</AdditionalActivities>
+    <GroupId>0</GroupId>
+  </Student>
+  <Student>
+    <Id>2</Id>
+    <FirstName>231241</FirstName>
+    <LastName />
+    <Comments />
+    <Math />
+    <Technology />
+    <Physics />
+    <PolishLang />
+    <ForeignLang />
+    <AdditionalActivities>false</AdditionalActivities>
+    <GroupId>0</GroupId>
+  </Student>
+  <Student>
+    <Id>3</Id>
+    <FirstName>12341434t3fe</FirstName>
+    <LastName>43124</LastName>
+    <Comments />
+    <Math />
+    <Technology />
+    <Physics />
+    <PolishLang />
+    <ForeignLang />
+    <AdditionalActivities>false</AdditionalActivities>
+    <GroupId>1</GroupId>
+  </Student>
+  <Student>
+    <Id>4</Id>
+    <FirstName>134345f</FirstName>
+    <LastName>gedbd</LastName>
+    <Comments />
+    <Math>412gd</Math>
+    <Technology>GERG2</Technology>
+    <Physics />
+    <PolishLang />
+    <ForeignLang />
+    <AdditionalActivities>false</AdditionalActivities>
+    <GroupId>2</GroupId>
+  </Student>
+</ArrayOfStudent>

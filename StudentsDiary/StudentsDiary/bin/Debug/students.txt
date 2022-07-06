@@ -22,4 +22,15 @@
     <PolishLang>2</PolishLang>
     <ForeignLang>6</ForeignLang>
   </Student>
+  <Student>
+    <Id>3</Id>
+    <FirstName>124412312</FirstName>
+    <LastName />
+    <Comments />
+    <Math />
+    <Technology />
+    <Physics />
+    <PolishLang />
+    <ForeignLang />
+  </Student>
 </ArrayOfStudent>
