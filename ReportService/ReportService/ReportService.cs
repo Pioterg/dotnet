@@ -14,6 +14,7 @@ namespace ReportService
 {
     public partial class ReportService : ServiceBase
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private const int SendHour = 8;
         private const int IntervalInMinutes = 30;
         private Timer _timer = new Timer(IntervalInMinutes * 60000);
@@ -28,12 +29,21 @@ namespace ReportService
         {
             _timer.Elapsed += DoWork;
             _timer.Start();
+            Logger.Info("Service start...");
         }
 
         private void DoWork(object sender, ElapsedEventArgs e)
         {
-            SendError();
-            SendReport();
+            try
+            {
+                SendError();
+                SendReport();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                throw new Exception(ex.Message);
+            }
         }
 
         private void SendError()
@@ -43,6 +53,7 @@ namespace ReportService
             if (errors == null || !errors.Any())
                 return;
             //send email
+            Logger.Info("Error sent...");
         }
 
         private void SendReport()
@@ -58,10 +69,12 @@ namespace ReportService
                 return;
             //send mail
             _reportRepository.ReportSent(report);
+            Logger.Info("Report sent...");
         }
 
         protected override void OnStop()
         {
+            Logger.Info("Service stopped...");
         }
     }
 }
