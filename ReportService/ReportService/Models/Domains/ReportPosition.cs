@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReportService.Models.Domains
 {
-    internal class ReportPosition
+    public class ReportPosition
     {
         public int Id { get; set; }
         public int ReportId { get; set; }

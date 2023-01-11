@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReportService.Models.Domains
 {
-    internal class Error
+    public class Error
     {
         public int Id { get; set; }
         public string Message { get; set; }

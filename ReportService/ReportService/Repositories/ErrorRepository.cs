@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReportService.Repositories
 {
-    internal class ErrorRepository
+    public class ErrorRepository
     {
         public List<Error> GetLastErrors(int intervalInMinutes)
         {

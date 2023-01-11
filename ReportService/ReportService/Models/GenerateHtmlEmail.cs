@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReportService.Models
 {
-    internal class GenerateHtmlEmail
+    public class GenerateHtmlEmail
     {
         public string GenerateErrors(List<Error> errors, int interval)
         {

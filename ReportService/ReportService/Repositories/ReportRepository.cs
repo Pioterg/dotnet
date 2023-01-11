@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReportService.Repositories
 {
-    internal class ReportRepository
+    public class ReportRepository
     {
         public Report GetLastSendReport()
         {

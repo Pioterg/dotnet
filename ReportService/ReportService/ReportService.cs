@@ -1,4 +1,5 @@
-﻿using ReportService.Repositories;
+﻿using ReportService.Models;
+using ReportService.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,9 +21,22 @@ namespace ReportService
         private Timer _timer = new Timer(IntervalInMinutes * 60000);
         private ErrorRepository _errorRepository = new ErrorRepository();
         private ReportRepository _reportRepository = new ReportRepository();
+        private Email _email;
+        private GenerateHtmlEmail _htmlEmail = new GenerateHtmlEmail();
+        private string _emailReceiver = "rolnik807@gmail.com";
         public ReportService()
         {
             InitializeComponent();
+
+            _email = new Email(new EmailParams
+            { 
+                HostSmtp = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                SenderName = "Piotr Sitkowski",
+                SenderEmail = "rolnik807@gmail.com",
+                SenderEmailPassword = "mmljcsztjibdpckg",
+            });
         }
 
         protected override void OnStart(string[] args)
@@ -32,12 +46,12 @@ namespace ReportService
             Logger.Info("Service start...");
         }
 
-        private void DoWork(object sender, ElapsedEventArgs e)
+        private async void DoWork(object sender, ElapsedEventArgs e)
         {
             try
             {
-                SendError();
-                SendReport();
+                await SendError();
+                await SendReport();
             }
             catch (Exception ex)
             {
@@ -46,17 +60,17 @@ namespace ReportService
             }
         }
 
-        private void SendError()
+        private async Task SendError()
         {
             var errors = _errorRepository.GetLastErrors(IntervalInMinutes);
 
             if (errors == null || !errors.Any())
                 return;
-            //send email
+            await _email.Send("Błędy w naszej aplikacji", _htmlEmail.GenerateErrors(errors, IntervalInMinutes), _emailReceiver);
             Logger.Info("Error sent...");
         }
 
-        private void SendReport()
+        private async Task SendReport()
         {
             var actualHour = DateTime.Now.Hour;
 
@@ -67,7 +81,10 @@ namespace ReportService
 
             if (report == null)
                 return;
-            //send mail
+
+            await _email.Send("Raport dobowy", _htmlEmail.GenerateReport(report), _emailReceiver);
+            Logger.Info("Error sent...");
+
             _reportRepository.ReportSent(report);
             Logger.Info("Report sent...");
         }
