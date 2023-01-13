@@ -28,6 +28,7 @@ namespace ReportService
         private GenerateHtmlEmail _htmlEmail = new GenerateHtmlEmail();
         private string _emailReceiver;
         private StringCipher _stringCipher = new StringCipher("DBB7B2E4-6728-405E-82F9-607D1D35F362");
+        private const string NotEncryptedPasswordPrefix = "encrypt:";
         public ReportService()
         {
             InitializeComponent();
@@ -79,9 +80,9 @@ namespace ReportService
         {
             var encryptedPassword = ConfigurationManager.AppSettings["SenderEmailPassword"];
 
-            if (encryptedPassword.StartsWith("encrypt:"))
+            if (encryptedPassword.StartsWith(NotEncryptedPasswordPrefix))
             {
-                encryptedPassword = _stringCipher.Encrypt(encryptedPassword.Replace("encrypt:", ""));
+                encryptedPassword = _stringCipher.Encrypt(encryptedPassword.Replace(NotEncryptedPasswordPrefix, ""));
 
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 configFile.AppSettings.Settings["SenderEmailPassword"].Value = encryptedPassword;
